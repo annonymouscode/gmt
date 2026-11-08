@@ -45,14 +45,20 @@ The gate closes under skew, so GMT stays close to the uncorrected model.
 
 ![Safety under label shift](assets/fig5_robustness.png)
 
-## Layout
-- `trustprompt/`: datasets, CLIP prompt learners (CoOp, CoCoOp, KgCoOp, IVLP, MaPLe, PromptSRC) and training engine.
-- `run_textprompt.py`, `dump_logits.py`: train a learner and save test logits (adapted and zero-shot).
-- `correct_bias.py`, `adaptive_correct.py`: Sinkhorn projection, Gini gate and GMT.
-- `calibrate_mixed.py`, `run_calib.sh`: label-free calibration of the gate on pseudo-splits.
-- `baselines_cs.py`, `extra_baselines.py`, `ablate_gate.py`, `analysis_suite.py`, `supp_analyses.py`, `batch_test.py`: baselines, ablations and analyses.
-- `newdata_analysis.py`, `run_newdata.sh`: datasets never used for calibration.
-- `make_assets.py`: builds every table, figure and in-text number of the paper from `runs/`.
+## Code map
+The files stay in one flat folder so that every script runs exactly as it did for the paper. Grouped by role:
+
+| Role | Files |
+|---|---|
+| **GMT (the method)** | `correct_bias.py` (Sinkhorn projection, metrics), `adaptive_correct.py` (Gini gate, GMT) |
+| **Gate calibration** | `calibrate_mixed.py`, `run_calib.sh` |
+| **Prompt learners** | `trustprompt/` (datasets, CoOp, CoCoOp, KgCoOp, IVLP, MaPLe, PromptSRC, training engine), `run_textprompt.py`, `dump_logits.py` |
+| **Pipeline launchers** | `run_tp.sh`, `run_tp_amp.sh`, `run_learner.sh`, `run_learner_amp.sh`, `run_seed.sh`, `run_variant.sh`, `post_learner.sh` |
+| **Baselines and ablations** | `baselines_cs.py`, `extra_baselines.py` (DePT router, OTTER), `ablate_gate.py` |
+| **Analyses** | `analysis_suite.py`, `supp_analyses.py`, `batch_test.py`, `qualitative.py`, `figures_extra.py` |
+| **New datasets** | `run_newdata.sh`, `newdata_analysis.py`, `prep_imagenet.sh` |
+| **Paper assets** | `make_assets.py` (every table, figure and number of the paper, from `runs/`) |
+| **Data utilities** | `scripts/` (download, split files, data checks, compact copies) |
 
 ## Setup
 Python >= 3.9, PyTorch, OpenAI CLIP (`pip install git+https://github.com/openai/CLIP.git`), numpy, scipy, matplotlib and POT (`pip install pot`).
