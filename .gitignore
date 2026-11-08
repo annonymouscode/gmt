@@ -1,0 +1,11 @@
+kaggle.json
+*.npz
+*.pth
+*.pt
+runs/
+logs/
+paper_assets/
+data/
+datasets/
+__pycache__/
+*.log
