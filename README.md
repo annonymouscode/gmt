@@ -26,7 +26,7 @@ What this looks like on single images: the standard protocol (novel classes only
 
 ## The method
 
-![Gated Marginal Transport](assets/fig_method.png)
+![Gated Marginal Transport](assets/arch.png)
 
 **At test time** (no training, no labels):
 1. Take the softmax predictions `P` of the adapted model for a batch of test images.
